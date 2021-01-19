@@ -1,0 +1,89 @@
+ALGORITHM sum element of an array 
+
+////////////////////// Q1 sum of the distinct element unsing array method ///////////////////////////
+VAR
+    set1: ARRAY_OF INTEGER[];
+    set2: ARRAY_OF INTEGER[];
+    Sum,i,j,n1,n2:INTEGER;
+BEGIN
+   Write("enter the size of set1"n1)
+   Write("enter the size of set2"n2)
+   Write("enter the first array"set1)
+   Read(set1)
+   Write("enter the second array"set2)
+   Read(set2)
+   FOR i FROM 0 TO set1.length STEP 1 DO 
+      j:=0;
+   WHILE(set1[i] <> set2[j] and j < set2.length) DO
+      j++
+     END_WHILE
+
+    IF(j = set2.length) THEN
+        Sum = Sum + set1[i];
+    END_IF
+      END_FOR
+
+ FOR j FROM 0 TO set2.length STEP 1 DO 
+      i:=0;
+   WHILE(set2[i] <> set1[j] and i < set1.length) DO
+       i++
+    END_WHILE
+
+    IF( i = set1.length) THEN
+       Sum = Sum + set2[j];
+    END_IF
+      END_FOR
+    Write("the sum of all distinct element from the set:",Sum)
+
+END
+
+
+
+
+
+////////////////////// Q2 sum of the same element using hash table method///////////////////////////
+
+ ALGORITHM
+
+  VAR 
+   htab: HASH_TABLE <INTEGER ,INTEGER>;
+   set1:ARRAY_OF INTEGER [5];
+   set2:ARRAY_OF INTEGER [5];
+   Sum ,Count : INTEGER:=0;
+   i:INTEGER;
+   BEGIN
+   FOR i FROM 0 TO set1.length-1 DO
+   Write("enter the element from table 1 : ");
+   Read(set1[i]);
+   Write(" inter the element from table 2 : ");
+   Read(set2[i]);
+   END_FOR
+
+   FOR i FROM 0 TO set1.length-1 STEP 1 DO
+   IF(htab.lookup[set1[i]) = TRUE) THEN
+      Count:htab.get(set1[i]);
+      htab.insert(set1[i] , Count++);
+   ELSE   
+      htab.insert(set1[i],0);
+      END_IF
+
+      IF(htab.lookup[set2[i]) = TRUE) THEN
+      Count:htab.get(set2[i]);
+      htab.insert(set2[i] , Count++);
+   ELSE
+      htab.insert(set2[i],0);
+   END_IF
+END_FOR
+
+FOR i FROM 0 TO  set1.length-1 STEP 1 DO
+  IF(htab.get(set1[i]) > 0) THEN
+    Sum:= Sum set1[i];
+
+   END_IF
+END_FOR
+
+    Write("the sum of element is : ",Sum)
+
+
+
+
